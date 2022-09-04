@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Crestron.SimplSharp;
 using Crestron.SimplSharp.CrestronIO; // For Basic SIMPL# Classes
 using Crestron.SimplSharpPro;                       	// For Basic SIMPL#Pro classes
@@ -37,6 +38,11 @@ namespace smart_graphics
                     if (File.Exists(SGDFilePath))
                     {
                         smartPanel.LoadSmartObjects(SGDFilePath);
+
+                        foreach (KeyValuePair<uint,SmartObject> pair in smartPanel.SmartObjects)
+                        {
+                            pair.Value.SigChange += SmartObjectSigChange;
+                        }
                     }
                     else
                     {
@@ -52,7 +58,32 @@ namespace smart_graphics
             }
         }
 
-        private void SmartPanel_SigChange(BasicTriList currentDevice, SigEventArgs args)
+       private void SmartObjectSigChange(GenericBase currentDevice, SmartObjectEventArgs args)
+       {
+           CrestronConsole.PrintLine("Smart Object used: {0}", args.SmartObjectArgs.ID);
+
+           switch ((PanelSmartObjectIDs)args.SmartObjectArgs.ID)
+           {
+               case PanelSmartObjectIDs.smartDpad:
+                   break;
+               case PanelSmartObjectIDs.smartButtonList:
+                   break;
+               case PanelSmartObjectIDs.smartReferenceList:
+                   break;
+
+               default:
+                   throw new ArgumentOutOfRangeException();
+           }
+       }
+       
+       private enum PanelSmartObjectIDs
+       {
+           smartDpad = 1,
+           smartButtonList = 2,
+           smartReferenceList = 3
+       }
+
+       private void SmartPanel_SigChange(BasicTriList currentDevice, SigEventArgs args)
         {
             // throw new NotImplementedException();
         }
