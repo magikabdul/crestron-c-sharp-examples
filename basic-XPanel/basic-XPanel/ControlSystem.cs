@@ -37,6 +37,7 @@ namespace basic_XPanel
                 {
                     physicalPanel = new Tsw770(0x03, this);
                     physicalPanel.SigChange += Panel_SigChange;
+                    physicalPanel.OnlineStatusChange += XPanelOnOnlineStatusChange;
                     if (physicalPanel.Register() != eDeviceRegistrationUnRegistrationResponse.Success)
                     {
                         ErrorLog.Error("Error in registration of panel = {0}", physicalPanel.RegistrationFailureReason);
@@ -64,7 +65,17 @@ namespace basic_XPanel
 
         private void XPanelOnOnlineStatusChange(GenericBase currentDevice, OnlineOfflineEventArgs args)
         {
-            throw new NotImplementedException();
+            if (currentDevice == xPanel)
+            {
+                if (args.DeviceOnLine)
+                {
+                    ErrorLog.Notice("Panel: {0} is ONLINE", currentDevice.Name);
+                }
+                else
+                {
+                    ErrorLog.Error("Panel: {0} is OFFLINE", currentDevice.Name);
+                }
+            }
         }
 
         private void Panel_SigChange(BasicTriList currentDevice, SigEventArgs args)
