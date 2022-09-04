@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using Crestron.SimplSharp;
 using Crestron.SimplSharp.CrestronIO; // For Basic SIMPL# Classes
-using Crestron.SimplSharpPro;                       	// For Basic SIMPL#Pro classes
-using Crestron.SimplSharpPro.CrestronThread;        	// For Threading
-using Crestron.SimplSharpPro.Diagnostics;		    	// For System Monitor Access
+using Crestron.SimplSharpPro; // For Basic SIMPL#Pro classes
+using Crestron.SimplSharpPro.CrestronThread; // For Threading
+using Crestron.SimplSharpPro.Diagnostics; // For System Monitor Access
 using Crestron.SimplSharpPro.DeviceSupport;
 using Crestron.SimplSharpPro.UI; // For Generic Device Support
 
@@ -13,22 +13,22 @@ namespace smart_graphics
     public class ControlSystem : CrestronControlSystem
     {
         private XpanelForSmartGraphics smartPanel;
-        
-       public ControlSystem()
+
+        public ControlSystem()
             : base()
         {
             try
             {
                 Thread.MaxNumberOfUserThreads = 20;
-                
+
                 smartPanel = new XpanelForSmartGraphics(0x03, this);
-                
+
                 //all types of signals except the smart object
                 smartPanel.SigChange += SmartPanel_SigChange;
-                
+
                 //sgd
                 var SGDFilePath = Path.Combine(Directory.GetApplicationDirectory(), "client/smart-graphics.sgd");
-                
+
                 if (smartPanel.Register() != eDeviceRegistrationUnRegistrationResponse.Success)
                 {
                     ErrorLog.Error("Failure in smart panel registration {0)", smartPanel.RegistrationFailureReason);
@@ -39,7 +39,7 @@ namespace smart_graphics
                     {
                         smartPanel.LoadSmartObjects(SGDFilePath);
 
-                        foreach (KeyValuePair<uint,SmartObject> pair in smartPanel.SmartObjects)
+                        foreach (KeyValuePair<uint, SmartObject> pair in smartPanel.SmartObjects)
                         {
                             pair.Value.SigChange += SmartObjectSigChange;
                         }
@@ -49,8 +49,6 @@ namespace smart_graphics
                         ErrorLog.Error("Invalid path {0}", SGDFilePath);
                     }
                 }
-                
-                
             }
             catch (Exception e)
             {
@@ -58,32 +56,62 @@ namespace smart_graphics
             }
         }
 
-       private void SmartObjectSigChange(GenericBase currentDevice, SmartObjectEventArgs args)
-       {
-           CrestronConsole.PrintLine("Smart Object used: {0}", args.SmartObjectArgs.ID);
+        private void SmartObjectSigChange(GenericBase currentDevice, SmartObjectEventArgs args)
+        {
+            CrestronConsole.PrintLine("Smart Object used: {0}", args.SmartObjectArgs.ID);
 
-           switch ((PanelSmartObjectIDs)args.SmartObjectArgs.ID)
-           {
-               case PanelSmartObjectIDs.smartDpad:
-                   break;
-               case PanelSmartObjectIDs.smartButtonList:
-                   break;
-               case PanelSmartObjectIDs.smartReferenceList:
-                   break;
+            switch ((PanelSmartObjectIDs)args.SmartObjectArgs.ID)
+            {
+                case PanelSmartObjectIDs.smartDpad:
+                {
+                    CrestronConsole.PrintLine("DPad: signal: {0}, number: {1}, name: {2}",
+                        args.Sig.GetType(), args.Sig.Number, args.Sig.Name);
 
-               default:
-                   throw new ArgumentOutOfRangeException();
-           }
-       }
-       
-       private enum PanelSmartObjectIDs
-       {
-           smartDpad = 1,
-           smartButtonList = 2,
-           smartReferenceList = 3
-       }
+                    switch (args.Sig.Name)
+                    {
+                        case "Up":
+                        case "Down":
+                        case "Left":
+                        case "Right":
+                        case "Center":
+                        {
+                            smartPanel.StringInput[1].StringValue = args.Sig.Name;
+                            break;
+                        }
+                    }
+                    break;
+                }
+                case PanelSmartObjectIDs.smartButtonList:
+                {
+                    CrestronConsole.PrintLine("ButtonList: signal: {0}, number: {1}, name: {2}",
+                        args.Sig.GetType(), args.Sig.Number, args.Sig.Name);
+                    
+                    //use the cue name to select appropriate signal
+                    ushort itemClicked = args.SmartObjectArgs.UShortOutput["Item Clicked"].UShortValue;
+                    smartPanel.StringInput[1].StringValue = string.Format("List Button {0}", itemClicked);
+                    
+                    break;
+                }
+                case PanelSmartObjectIDs.smartReferenceList:
+                {
+                    CrestronConsole.PrintLine("ReferenceList: signal: {0}, number: {1}, name: {2}",
+                        args.Sig.GetType(), args.Sig.Number, args.Sig.Name);
+                    break;
+                }
 
-       private void SmartPanel_SigChange(BasicTriList currentDevice, SigEventArgs args)
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private enum PanelSmartObjectIDs
+        {
+            smartDpad = 1,
+            smartButtonList = 2,
+            smartReferenceList = 3
+        }
+
+        private void SmartPanel_SigChange(BasicTriList currentDevice, SigEventArgs args)
         {
             // throw new NotImplementedException();
         }
@@ -92,7 +120,6 @@ namespace smart_graphics
         {
             try
             {
-
             }
             catch (Exception e)
             {
