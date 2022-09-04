@@ -44,6 +44,7 @@ namespace basic_XPanel
                     
                     xPanel = new XpanelForSmartGraphics(0x04, this);
                     xPanel.SigChange += Panel_SigChange;
+                    xPanel.OnlineStatusChange += XPanelOnOnlineStatusChange;
                     if (xPanel.Register() != eDeviceRegistrationUnRegistrationResponse.Success)
                     {
                         ErrorLog.Error("Error in registration of panel = {0}", physicalPanel.RegistrationFailureReason);
@@ -59,6 +60,11 @@ namespace basic_XPanel
             {
                 ErrorLog.Error("Error in the constructor: {0}", e.Message);
             }
+        }
+
+        private void XPanelOnOnlineStatusChange(GenericBase currentDevice, OnlineOfflineEventArgs args)
+        {
+            throw new NotImplementedException();
         }
 
         private void Panel_SigChange(BasicTriList currentDevice, SigEventArgs args)
