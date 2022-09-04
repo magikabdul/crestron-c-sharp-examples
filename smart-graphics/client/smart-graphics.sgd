@@ -1,0 +1,401 @@
+[
+ObjTp=FSgntr
+Sgntr=SGD
+RelVrs=3
+VTProeVer=6.2.02
+Schema=1
+CRCGUID=2EE4D072-085A-4C03-AA74-B7CF02AB4CB9
+]
+;================================================================================
+[
+ObjTp=Hd
+ProjectFile=smart-graphics.vtp
+VtpGuid=82330530-1343-4AB1-BEE6-328AB283541F
+]
+;================================================================================
+[
+ObjTp=Symbol
+Name=smart-graphics_Page1_DPad_2.ced
+Hint=DPad_2 (Smart Object ID=1)
+Code=1
+SGControlType=DPad
+SGControlName=DPad_2
+GUID=6CB9F7CA-8EBA-40E8-AB66-2C4AECC50938
+SmplCName=smart-graphics_Page1_DPad_2.ced
+SMWRev=4.02.19
+Expand=expand_random
+HelpID=10015
+;Define the number of inputs, outputs and parameters
+MinVariableInputs=5
+MaxVariableInputs=5
+MinVariableOutputs=5
+MaxVariableOutputs=5
+NumFixedParams=1
+MinVariableInputsList2=0
+MaxVariableInputsList2=0
+MinVariableOutputsList2=0
+MaxVariableOutputsList2=0
+MinVariableInputsList3=0
+MaxVariableInputsList3=0
+MinVariableOutputsList3=0
+MaxVariableOutputsList3=0
+;Define the cues, and signal types  each input, output and parameter.
+InputCue1=[~UNUSED3~]
+InputSigType1=Digital
+OutputCue1=Up
+OutputSigType1=Digital
+InputCue2=[~UNUSED3~]
+InputSigType2=Digital
+OutputCue2=Down
+OutputSigType2=Digital
+InputCue3=[~UNUSED3~]
+InputSigType3=Digital
+OutputCue3=Left
+OutputSigType3=Digital
+InputCue4=[~UNUSED3~]
+InputSigType4=Digital
+OutputCue4=Right
+OutputSigType4=Digital
+InputCue5=[~UNUSED3~]
+InputSigType5=Digital
+OutputCue5=Center
+OutputSigType5=Digital
+ParamCue1=SmartObjectId
+ParamSigType1=Constant
+MPp=1
+Pp1=1
+CedH=1
+SmartObjId=1d
+]
+; Parameter Properties for Smart Object ID
+[
+ObjTp=Dp
+H=1
+Tp=1
+HD=TRUE
+DV=1d
+NF=1
+DNF=1
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+; Smart Objects Definition section
+[
+ObjTp=CED
+H=1
+Name=smart-graphics_Page1_DPad_2.ced
+;Cedver is the version of the Smart Graphics control, not the CED file format.
+;If the control definition changes, increment this.
+CedVer=1
+]
+;================================================================================
+[
+ObjTp=Symbol
+Name=smart-graphics_Page1_Button List Vertical.ced
+Hint=Button List Vertical (Smart Object ID=2)
+Code=2
+SGControlType=Button List Vertical
+SGControlName=Button List Vertical
+GUID=FC5DB4F5-FC2F-4E86-B703-2F2CEED4D4C0
+SmplCName=smart-graphics_Page1_Button List Vertical.ced
+SMWRev=4.02.19
+Expand=expand_random
+HelpID=10009
+;Define the number of inputs, outputs and parameters
+MinVariableInputs=5
+MaxVariableInputs=5
+MinVariableOutputs=5
+MaxVariableOutputs=5
+NumFixedParams=1
+MinVariableInputsList2=6
+MaxVariableInputsList2=6
+MinVariableOutputsList2=6
+MaxVariableOutputsList2=6
+MinVariableInputsList3=5
+MaxVariableInputsList3=5
+MinVariableOutputsList3=5
+MaxVariableOutputsList3=5
+;Define the cues, and signal types  each input, output and parameter.
+InputCue1=[~UNUSED3~]
+InputSigType1=Digital
+OutputCue1=Item 1 Pressed
+OutputSigType1=Digital
+InputCue2=[~UNUSED3~]
+InputSigType2=Digital
+OutputCue2=Item 2 Pressed
+OutputSigType2=Digital
+InputCue3=[~UNUSED3~]
+InputSigType3=Digital
+OutputCue3=Item 3 Pressed
+OutputSigType3=Digital
+InputCue4=[~UNUSED3~]
+InputSigType4=Digital
+OutputCue4=Item 4 Pressed
+OutputSigType4=Digital
+InputCue5=[~UNUSED3~]
+InputSigType5=Digital
+OutputCue5=Item 5 Pressed
+OutputSigType5=Digital
+InputList2Cue1=Select Item
+InputList2SigType1=Analog
+OutputList2Cue1=[~UNUSED3~]
+OutputList2SigType1=Analog
+InputList2Cue2=Deselect Item
+InputList2SigType2=Analog
+OutputList2Cue2=[~UNUSED3~]
+OutputList2SigType2=Analog
+InputList2Cue3=Scroll Item
+InputList2SigType3=Analog
+OutputList2Cue3=[~UNUSED3~]
+OutputList2SigType3=Analog
+InputList2Cue4=[~UNUSED3~]
+InputList2SigType4=Analog
+OutputList2Cue4=Item Clicked
+OutputList2SigType4=Analog
+InputList2Cue5=[~UNUSED3~]
+InputList2SigType5=Analog
+OutputList2Cue5=Item Held
+OutputList2SigType5=Analog
+InputList2Cue6=Set Num of Items
+InputList2SigType6=Analog
+OutputList2Cue6=[~UNUSED3~]
+OutputList2SigType6=Analog
+InputList3Cue1=Item 1 Text
+InputList3SigType1=Serial
+OutputList3Cue1=[~UNUSED3~]
+OutputList3SigType1=Serial
+InputList3Cue2=Item 2 Text
+InputList3SigType2=Serial
+OutputList3Cue2=[~UNUSED3~]
+OutputList3SigType2=Serial
+InputList3Cue3=Item 3 Text
+InputList3SigType3=Serial
+OutputList3Cue3=[~UNUSED3~]
+OutputList3SigType3=Serial
+InputList3Cue4=Item 4 Text
+InputList3SigType4=Serial
+OutputList3Cue4=[~UNUSED3~]
+OutputList3SigType4=Serial
+InputList3Cue5=Item 5 Text
+InputList3SigType5=Serial
+OutputList3Cue5=[~UNUSED3~]
+OutputList3SigType5=Serial
+ParamCue1=SmartObjectId
+ParamSigType1=Constant
+MPp=1
+Pp1=2
+CedH=2
+SmartObjId=2d
+]
+; Parameter Properties for Smart Object ID
+[
+ObjTp=Dp
+H=2
+Tp=1
+HD=TRUE
+DV=2d
+NF=1
+DNF=1
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+; Smart Objects Definition section
+[
+ObjTp=CED
+H=2
+Name=smart-graphics_Page1_Button List Vertical.ced
+;Cedver is the version of the Smart Graphics control, not the CED file format.
+;If the control definition changes, increment this.
+CedVer=1
+]
+;================================================================================
+[
+ObjTp=Symbol
+Name=smart-graphics_Page1_Subpage Reference List Vertical.ced
+Hint=Subpage Reference List Vertical (Smart Object ID=3)
+Code=3
+SGControlType=Subpage Reference List Vertical
+SGControlName=Subpage Reference List Vertical
+GUID=2FD7B8AF-17FF-4390-8AB4-606B7734B5CA
+SmplCName=smart-graphics_Page1_Subpage Reference List Vertical.ced
+SMWRev=4.02.20
+Expand=expand_random
+HelpID=10125
+Render=8
+;Define the number of inputs, outputs and parameters
+MinVariableInputs=4014
+MaxVariableInputs=4014
+MinVariableOutputs=4014
+MaxVariableOutputs=4014
+NumFixedParams=1
+MinVariableInputsList2=3
+MaxVariableInputsList2=3
+MinVariableOutputsList2=3
+MaxVariableOutputsList2=3
+MinVariableInputsList3=0
+MaxVariableInputsList3=0
+MinVariableOutputsList3=0
+MaxVariableOutputsList3=0
+InputSigType1=Digital
+OutputSigType1=Digital
+InputList2SigType1=Analog
+OutputList2SigType1=Analog
+InputList3SigType1=Serial
+OutputList3SigType1=Serial
+
+;Define the cues, and signal types  each input, output and parameter.
+InputCue1=[~UNUSED3~]
+InputSigType1=Digital
+InputCue2=[~UNUSED2~]
+InputSigType2=Digital
+InputCue3=[~UNUSED2~]
+InputSigType3=Digital
+InputCue4=[~UNUSED2~]
+InputSigType4=Digital
+InputCue5=[~UNUSED2~]
+InputSigType5=Digital
+InputCue6=[~UNUSED2~]
+InputSigType6=Digital
+InputCue7=[~UNUSED2~]
+InputSigType7=Digital
+InputCue8=[~UNUSED2~]
+InputSigType8=Digital
+InputCue9=[~UNUSED2~]
+InputSigType9=Digital
+InputCue10=[~UNUSED2~]
+InputSigType10=Digital
+InputCue11=[~BeginGroup~]Enable
+InputSigType11=Digital
+InputCue12=Item 1 Enable
+InputSigType12=Digital
+InputCue13=Item 2 Enable
+InputSigType13=Digital
+InputCue14=Item 3 Enable
+InputSigType14=Digital
+InputCue15=Item 4 Enable
+InputSigType15=Digital
+InputCue16=Item 5 Enable
+InputSigType16=Digital
+InputCue17=Item 6 Enable
+InputSigType17=Digital
+InputCue18=[~UNUSED2~]
+InputSigType18=Digital|Analog|Serial|String
+InputCue2012=[~EndGroup~]Enable
+InputSigType2012=Digital
+InputCue2013=[~BeginGroup~]Visible
+InputSigType2013=Digital
+InputCue2014=Item 1 Visible
+InputSigType2014=Digital
+InputCue2015=Item 2 Visible
+InputSigType2015=Digital
+InputCue2016=Item 3 Visible
+InputSigType2016=Digital
+InputCue2017=Item 4 Visible
+InputSigType2017=Digital
+InputCue2018=Item 5 Visible
+InputSigType2018=Digital
+InputCue2019=Item 6 Visible
+InputSigType2019=Digital
+InputCue2020=[~UNUSED2~]
+InputSigType2020=Digital|Analog|Serial|String
+InputCue4014=[~EndGroup~]Visible
+InputSigType4014=Digital
+OutputCue1=Is Moving
+OutputSigType1=Digital
+OutputCue2=[~UNUSED2~]
+OutputSigType2=Digital
+OutputCue3=[~UNUSED2~]
+OutputSigType3=Digital
+OutputCue4=[~UNUSED2~]
+OutputSigType4=Digital
+OutputCue5=[~UNUSED2~]
+OutputSigType5=Digital
+OutputCue6=[~UNUSED2~]
+OutputSigType6=Digital
+OutputCue7=[~UNUSED2~]
+OutputSigType7=Digital
+OutputCue8=[~UNUSED2~]
+OutputSigType8=Digital
+OutputCue9=[~UNUSED2~]
+OutputSigType9=Digital
+OutputCue10=[~UNUSED2~]
+OutputSigType10=Digital
+OutputCue11=[~BeginGroup~]Enable
+OutputSigType11=Digital
+OutputCue12=[~UNUSED3~]
+OutputSigType12=Digital
+OutputCue13=[~UNUSED3~]
+OutputSigType13=Digital
+OutputCue14=[~UNUSED3~]
+OutputSigType14=Digital
+OutputCue15=[~UNUSED3~]
+OutputSigType15=Digital
+OutputCue16=[~UNUSED3~]
+OutputSigType16=Digital
+OutputCue17=[~UNUSED3~]
+OutputSigType17=Digital
+OutputCue18=[~UNUSED2~]
+OutputSigType18=Digital|Analog|Serial|String
+OutputCue2012=[~EndGroup~]Enable
+OutputSigType2012=Digital
+OutputCue2013=[~BeginGroup~]Visible
+OutputSigType2013=Digital
+OutputCue2014=[~UNUSED3~]
+OutputSigType2014=Digital
+OutputCue2015=[~UNUSED3~]
+OutputSigType2015=Digital
+OutputCue2016=[~UNUSED3~]
+OutputSigType2016=Digital
+OutputCue2017=[~UNUSED3~]
+OutputSigType2017=Digital
+OutputCue2018=[~UNUSED3~]
+OutputSigType2018=Digital
+OutputCue2019=[~UNUSED3~]
+OutputSigType2019=Digital
+OutputCue2020=[~UNUSED2~]
+OutputSigType2020=Digital|Analog|Serial|String
+OutputCue4014=[~EndGroup~]Visible
+OutputSigType4014=Digital
+InputList2Cue1=[~UNUSED3~]
+InputList2SigType1=Analog
+InputList2Cue2=Scroll To Item
+InputList2SigType2=Analog
+InputList2Cue3=Set Number of Items
+InputList2SigType3=Analog
+OutputList2Cue1=Item Clicked
+OutputList2SigType1=Analog
+OutputList2Cue2=[~UNUSED3~]
+OutputList2SigType2=Analog
+OutputList2Cue3=[~UNUSED3~]
+OutputList2SigType3=Analog
+ParamCue1=SmartObjectId
+ParamSigType1=Constant
+MPp=1
+Pp1=3
+CedH=3
+SmartObjId=3d
+]
+; Parameter Properties for Smart Object ID
+[
+ObjTp=Dp
+H=3
+Tp=1
+HD=TRUE
+DV=3d
+NF=1
+DNF=1
+EncFmt=0
+DVLF=1
+Sgn=0
+]
+; Smart Objects Definition section
+[
+ObjTp=CED
+H=3
+Name=smart-graphics_Page1_Subpage Reference List Vertical.ced
+;Cedver is the version of the Smart Graphics control, not the CED file format.
+;If the control definition changes, increment this.
+CedVer=1
+]
