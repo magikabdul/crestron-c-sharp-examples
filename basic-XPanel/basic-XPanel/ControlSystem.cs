@@ -3,12 +3,16 @@ using Crestron.SimplSharp;                          	// For Basic SIMPL# Classes
 using Crestron.SimplSharpPro;                       	// For Basic SIMPL#Pro classes
 using Crestron.SimplSharpPro.CrestronThread;        	// For Threading
 using Crestron.SimplSharpPro.Diagnostics;		    	// For System Monitor Access
-using Crestron.SimplSharpPro.DeviceSupport;         	// For Generic Device Support
+using Crestron.SimplSharpPro.DeviceSupport;
+using Crestron.SimplSharpPro.UI; // For Generic Device Support
 
 namespace basic_XPanel
 {
     public class ControlSystem : CrestronControlSystem
     {
+        private XpanelForSmartGraphics xPanel;
+        private Tsw770 physicalPanel;
+
         /// <summary>
         /// ControlSystem Constructor. Starting point for the SIMPL#Pro program.
         /// Use the constructor to:
@@ -29,6 +33,23 @@ namespace basic_XPanel
             {
                 Thread.MaxNumberOfUserThreads = 20;
 
+                if (this.SupportsEthernet)
+                {
+                    physicalPanel = new Tsw770(0x03, this);
+                    physicalPanel.SigChange += Panel_SigChange;
+                    if (physicalPanel.Register() != eDeviceRegistrationUnRegistrationResponse.Success)
+                    {
+                        ErrorLog.Error("Error in registration of panel = {0}", physicalPanel.RegistrationFailureReason);
+                    }
+                    
+                    xPanel = new XpanelForSmartGraphics(0x04, this);
+                    xPanel.SigChange += Panel_SigChange;
+                    if (xPanel.Register() != eDeviceRegistrationUnRegistrationResponse.Success)
+                    {
+                        ErrorLog.Error("Error in registration of panel = {0}", physicalPanel.RegistrationFailureReason);
+                    }
+                }
+
                 //Subscribe to the controller events (System, Program, and Ethernet)
                 CrestronEnvironment.SystemEventHandler += new SystemEventHandler(_ControllerSystemEventHandler);
                 CrestronEnvironment.ProgramStatusEventHandler += new ProgramStatusEventHandler(_ControllerProgramEventHandler);
@@ -38,6 +59,11 @@ namespace basic_XPanel
             {
                 ErrorLog.Error("Error in the constructor: {0}", e.Message);
             }
+        }
+
+        private void Panel_SigChange(BasicTriList currentDevice, SigEventArgs args)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
