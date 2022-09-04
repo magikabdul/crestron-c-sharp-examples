@@ -80,7 +80,28 @@ namespace basic_XPanel
 
         private void Panel_SigChange(BasicTriList currentDevice, SigEventArgs args)
         {
-            throw new NotImplementedException();
+            switch (args.Sig.Type)
+            {
+                case eSigType.NA:
+                    break;
+                case eSigType.Bool:
+                {
+                    if (args.Sig.Number == 10)
+                    {
+                        if (args.Sig.BoolValue == true) //means button press
+                            currentDevice.BooleanInput[20].BoolValue = true;
+                        else
+                            currentDevice.BooleanInput[20].BoolValue = false;
+                    }
+                    break;
+                }
+                case eSigType.UShort:
+                    break;
+                case eSigType.String:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
 
         /// <summary>
