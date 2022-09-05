@@ -32,11 +32,33 @@ namespace relay_keypad_panel
                     panel = new Xpanel(0x03, this);
                     panel.SigChange += PanelSigChange;
                 }
+
+                if (this.SupportsRelay)
+                {
+                    if (this.RelayPorts[1].Register() != eDeviceRegistrationUnRegistrationResponse.Success)
+                    {
+                        ErrorLog.Error("---");
+                    }
+
+                    this.RelayPorts[1].StateChange += new RelayEventHandler(RelayChangeHandler);
+                    
+                    if (this.RelayPorts[2].Register() != eDeviceRegistrationUnRegistrationResponse.Success)
+                    {
+                        ErrorLog.Error("---");
+                    }
+
+                    this.RelayPorts[2].StateChange += new RelayEventHandler(RelayChangeHandler);
+                }
             }
             catch (Exception e)
             {
                 ErrorLog.Error("Error in the constructor: {0}", e.Message);
             }
+        }
+
+        private void RelayChangeHandler(Relay relay, RelayEventArgs args)
+        {
+            
         }
 
         private void keypad_ButtonStateChange(GenericBase device, ButtonEventArgs args)
