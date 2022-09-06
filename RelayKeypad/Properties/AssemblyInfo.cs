@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("relay_keypad_panel")]
+[assembly: AssemblyTitle("RelayKeypad")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("relay_keypad_panel")]
+[assembly: AssemblyProduct("RelayKeypad")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("AF12FFF6-C2AE-44AD-BD3F-2781737C67EE")]
+[assembly: Guid("60E37A3D-9E44-4B85-B36F-1FC5538F478D")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,4 +1,4 @@
-﻿$file = "D:\crestron\c-sharp-crestron-examples\relay-keypad-panel\bin\Debug\relay_keypad_panel.cpz"
+﻿$file = "D:\crestron\c-sharp-crestron-examples\RelayKeypad\bin\Debug\RelayKeypad.cpz"
 $ip = "192.168.1.85"
 $slotNumber = 1
 $username = "admin"

@@ -7,12 +7,12 @@ using Crestron.SimplSharpPro.DeviceSupport;
 using Crestron.SimplSharpPro.Keypads;
 using Crestron.SimplSharpPro.UI; // For Generic Device Support
 
-namespace relay_keypad_panel
+namespace RelayKeypad
 {
     public class ControlSystem : CrestronControlSystem
     {
         private C2niCb keypad;
-        private Xpanel panel;
+        private XpanelForSmartGraphics panel;
 
         public ControlSystem()
             : base()
@@ -24,30 +24,21 @@ namespace relay_keypad_panel
                 if (this.SupportsCresnet)
                 {
                     keypad = new C2niCb(0x30, this);
-                    keypad.ButtonStateChange += new ButtonEventHandler(keypad_ButtonStateChange);
+                    keypad.ButtonStateChange += new ButtonEventHandler(KeypadButtonStateChange);
+                    keypad.Register();
                 }
 
-                if (this.SupportsEthernet)
-                {
-                    panel = new Xpanel(0x03, this);
-                    panel.SigChange += PanelSigChange;
-                }
+                panel = new XpanelForSmartGraphics(0x03, this);
+                panel.SigChange += PanelSigChange;
+                panel.Register();
 
                 if (this.SupportsRelay)
                 {
-                    if (this.RelayPorts[1].Register() != eDeviceRegistrationUnRegistrationResponse.Success)
-                    {
-                        ErrorLog.Error("---");
-                    }
-
-                    this.RelayPorts[1].StateChange += new RelayEventHandler(RelayChangeHandler);
+                    this.RelayPorts[1].Register();
+                    this.RelayPorts[1].StateChange += new RelayEventHandler(RelayStateChange);
                     
-                    if (this.RelayPorts[2].Register() != eDeviceRegistrationUnRegistrationResponse.Success)
-                    {
-                        ErrorLog.Error("---");
-                    }
-
-                    this.RelayPorts[2].StateChange += new RelayEventHandler(RelayChangeHandler);
+                    this.RelayPorts[2].Register();
+                    this.RelayPorts[2].StateChange += new RelayEventHandler(RelayStateChange);
                 }
             }
             catch (Exception e)
@@ -56,19 +47,18 @@ namespace relay_keypad_panel
             }
         }
 
-        private void RelayChangeHandler(Relay relay, RelayEventArgs args)
+        private void RelayStateChange(Relay relay, RelayEventArgs args)
         {
             
         }
 
-        private void keypad_ButtonStateChange(GenericBase device, ButtonEventArgs args)
+        private void KeypadButtonStateChange(GenericBase device, ButtonEventArgs args)
         {
-            
         }
 
         private void PanelSigChange(BasicTriList currentDevice, SigEventArgs args)
         {
-            
+            throw new NotImplementedException();
         }
 
         public override void InitializeSystem()
