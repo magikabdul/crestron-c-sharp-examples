@@ -40,6 +40,8 @@ namespace RelayKeypad
                     this.RelayPorts[2].Register();
                     this.RelayPorts[2].StateChange += new RelayEventHandler(RelayStateChange);
                 }
+
+                panel.StringInput[1].StringValue = "N/A";
             }
             catch (Exception e)
             {
@@ -49,11 +51,19 @@ namespace RelayKeypad
 
         private void RelayStateChange(Relay relay, RelayEventArgs args)
         {
-            
+            switch (relay.ID)
+            {
+                case 1:
+                {
+                    panel.BooleanInput[7].BoolValue = this.RelayPorts[1].State == true;
+                    break;
+                }
+            }
         }
 
         private void KeypadButtonStateChange(GenericBase device, ButtonEventArgs args)
         {
+            
         }
 
         private void PanelSigChange(BasicTriList currentDevice, SigEventArgs args)
@@ -62,9 +72,11 @@ namespace RelayKeypad
             {
                 case 7:
                     RelayPorts[1].Open();
+                    panel.StringInput[1].StringValue = "OPENED";
                     break;
                 case 8: 
                     RelayPorts[1].Close();
+                    panel.StringInput[1].StringValue = "CLOSED";
                     break;
                 default:
                     break;
