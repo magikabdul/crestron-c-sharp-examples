@@ -58,7 +58,17 @@ namespace RelayKeypad
 
         private void PanelSigChange(BasicTriList currentDevice, SigEventArgs args)
         {
-            throw new NotImplementedException();
+            switch (args.Sig.Number)
+            {
+                case 7:
+                    RelayPorts[1].Open();
+                    break;
+                case 8: 
+                    RelayPorts[1].Close();
+                    break;
+                default:
+                    break;
+            }
         }
 
         public override void InitializeSystem()
