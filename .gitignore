@@ -4,3 +4,9 @@ packages/
 riderModule.iml
 _ReSharper.Caches/
 .idea/
+
+*.asv
+*.vtz
+*.hash
+*.ced
+
